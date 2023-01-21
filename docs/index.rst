@@ -1,4 +1,4 @@
-Welcome to Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper's documentation!
+Python Authorization Helper's documentation!
 ======================================
 
 .. toctree::

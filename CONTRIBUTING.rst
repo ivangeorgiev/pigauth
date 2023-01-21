@@ -38,8 +38,8 @@ and "help wanted" is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper could always use more documentation, whether as part of the
-official Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper docs, in docstrings, or even on the web in blog posts,
+Python Authorization Helper could always use more documentation, whether as part of the
+official Python Authorization Helper docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback

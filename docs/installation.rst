@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper, run this command in your terminal:
+To install Python Authorization Helper, run this command in your terminal:
 
 .. code-block:: console
 
     $ pip install pigauth
 
-This is the preferred method to install Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper, as it will always install the most recent stable release.
+This is the preferred method to install Python Authorization Helper, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,7 +26,7 @@ you through the process.
 From sources
 ------------
 
-The sources for Authorization helper[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[1;5D[D[DPython Authorization Helper can be downloaded from the `Github repo`_.
+The sources for Python Authorization Helper can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
