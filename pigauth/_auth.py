@@ -26,23 +26,29 @@ grants = resolver.resolve(["canteen.eat.pasta|preview"], ["Cook"])
 print(grants)
 
 matcher = GrantsMatcher(grants)
-print("Allowed canteen.eat.meat: ", matcher.matches(Permission('canteen.eat.meat')))
-print("Allowed canteen.eat.seafood: ", matcher.matches(Permission('canteen.eat.seafood', requires=["preview"])))
-print("Allowed canteen.eat.pasta: ", matcher.matches(Permission('canteen.eat.pasta', requires=["preview"])))
+print("Allowed canteen.eat.meat: ", matcher.matches(Permission("canteen.eat.meat")))
+print(
+    "Allowed canteen.eat.seafood: ",
+    matcher.matches(Permission("canteen.eat.seafood", requires=["preview"])),
+)
+print(
+    "Allowed canteen.eat.pasta: ",
+    matcher.matches(Permission("canteen.eat.pasta", requires=["preview"])),
+)
 
 import json
+
 print(json.dumps(dataclasses.asdict(scheme)))
 
 ```
 
 """
 
-from __future__ import annotations
 import abc
 import dataclasses
 import re
 from types import SimpleNamespace
-from typing import Iterable
+from typing import Iterable, List, Dict
 
 PermissionId = str
 
@@ -53,8 +59,8 @@ class Permission:
     requires: list = dataclasses.field(default_factory=list)
 
 
-Permissions = list[Permission]
-PermissionMap = dict[PermissionId, Permission]
+Permissions = List[Permission]
+PermissionMap = Dict[PermissionId, Permission]
 
 Grant = str
 Grants = Iterable[Grant]
@@ -74,8 +80,8 @@ class Role:
         return hash(self.role_id)
 
 
-Roles = list[Role]
-RoleMap = dict[RoleId, Role]
+Roles = List[Role]
+RoleMap = Dict[RoleId, Role]
 RoleGrants = Iterable[RoleId]
 
 
@@ -124,7 +130,7 @@ class IMatcher:
     modifier: str
 
     @abc.abstractmethod
-    def matches(self, permission: Permission, context: MatchContext = None) -> bool:
+    def matches(self, permission: Permission, context: MatchContext) -> bool:
         """Match permission"""
 
 
@@ -132,7 +138,7 @@ class RequiresMatcher(IMatcher):
     def __init__(self, modifiers: Iterable[str]):
         self.modifiers = list(modifiers)
 
-    def matches(self, permission: Permission, context: MatchContext = None) -> bool:
+    def matches(self, permission: Permission, context: MatchContext) -> bool:
         for required in permission.requires:
             if required not in self.modifiers:
                 return False
@@ -140,10 +146,10 @@ class RequiresMatcher(IMatcher):
 
 
 class RegexMatcher(IMatcher):
-    def __init__(self, regex: re.Pattern):
+    def __init__(self, regex):
         self.regex = regex
 
-    def matches(self, permission: Permission, context: MatchContext = None) -> bool:
+    def matches(self, permission: Permission, context: MatchContext) -> bool:
         return bool(self.regex.fullmatch(permission.permission_id))
 
 
@@ -151,7 +157,7 @@ class AllMatcher(IMatcher):
     def __init__(self, matchers: Iterable[IMatcher]) -> None:
         self.matchers = matchers
 
-    def matches(self, permission: Permission, context: MatchContext = None) -> bool:
+    def matches(self, permission: Permission, context: MatchContext) -> bool:
         for matcher in self.matchers:
             if not matcher.matches(permission, context):
                 return False
@@ -186,7 +192,7 @@ class GrantParser:
 
 
 class GrantsMatcher(IMatcher):
-    matchers: list[IMatcher]
+    matchers: List[IMatcher]
 
     def __init__(self, grants: Grants):
         self.matchers = self._parse_grants(grants)
@@ -196,7 +202,7 @@ class GrantsMatcher(IMatcher):
         matchers = [grant_parser.parse(grant) for grant in grants]
         return matchers
 
-    def matches(self, permission: Permission, context: MatchContext = None) -> bool:
+    def matches(self, permission: Permission, context: MatchContext) -> bool:
         for matcher in self.matchers:
             if matcher.matches(permission, context):
                 return True

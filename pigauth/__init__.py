@@ -1,17 +1,25 @@
 """Python Authorization Helper."""
 
-from ._auth import Resolver, Scheme, Role, Permission, GrantsMatcher, IMatcher, MatchContext
+from ._auth import (
+    Resolver,
+    Scheme,
+    Role,
+    Permission,
+    GrantsMatcher,
+    IMatcher,
+    MatchContext,
+)
 
-__all__= [
+__all__ = [
     "IMatcher",
     "GrantsMatcher",
     "MatchContext",
     "Permission",
     "Resolver",
     "Role",
-    "Scheme"
+    "Scheme",
 ]
 
 __author__ = """Ivan Georgiev"""
-__email__ = 'ivan.georgiev@gmail.com'
-__version__ = '0.1.0'
+__email__ = "ivan.georgiev@gmail.com"
+__version__ = "0.1.0"
