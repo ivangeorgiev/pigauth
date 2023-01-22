@@ -46,4 +46,8 @@ setup(
     url='https://github.com/ivangeorgiev/pigauth',
     version='0.1.0',
     zip_safe=False,
+    project_urs={
+        'Documentation': 'https://pigauth.readthedocs.io/',
+        'GitHub': 'https://github.com/ivangeorgiev/pigauth',
+    }
 )
