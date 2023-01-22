@@ -28,10 +28,24 @@ Features
 
 * TODO
 
-Credits
--------
+Glossary
+---------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+.. glossary::
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+    authorization scheme
+        Specification of how the authorization is handled through a set of permissions
+        and role definitions.
+
+    grant
+        Assignment of a role or a permission pattern which grants matching permissions
+        to a user.
+
+    pattern modifier
+        Specifies how the permission pattern evaluation is to be modified.
+
+    permission pattern
+        An expression which is evaluated to match permissions.
+
+    role
+        A collection of permissions.
