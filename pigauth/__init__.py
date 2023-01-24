@@ -5,16 +5,14 @@ from ._auth import (
     Scheme,
     Role,
     Permission,
-    GrantsMatcher,
-    IMatcher,
-    MatchContext,
 )
+from ._matcher import MatchContext
+from ._parser import PermissionGrantParser
 
 __all__ = [
-    "IMatcher",
-    "GrantsMatcher",
     "MatchContext",
     "Permission",
+    "PermissionGrantParser",
     "Resolver",
     "Role",
     "Scheme",

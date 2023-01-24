@@ -29,11 +29,6 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     description="Authorization Helper for Python projects",
-    entry_points={
-        'console_scripts': [
-            'pigauth=pigauth.cli:main',
-        ],
-    },
     install_requires=requirements,
     license="BSD license",
     long_description=readme + '\n\n' + history,
