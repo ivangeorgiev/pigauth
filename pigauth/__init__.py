@@ -7,12 +7,13 @@ from ._auth import (
     Permission,
 )
 from ._matcher import MatchContext
-from ._parser import PermissionGrantParser
+from ._parser import PermissionGrantParser, PermissionGrantsParser
 
 __all__ = [
     "MatchContext",
     "Permission",
     "PermissionGrantParser",
+    "PermissionGrantsParser",
     "Resolver",
     "Role",
     "Scheme",

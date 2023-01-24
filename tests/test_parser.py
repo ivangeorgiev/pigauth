@@ -39,20 +39,6 @@ class TestExpressionParser:
         modifier_parser.assert_called_once_with("modifier")
         assert matchers == [expected_pattern_matcher, expected_modifier_matcher]
 
-    def test_call_should_parse_expression_and_yield_only_matchers_when_no_modifier(self):
-        # Given
-        pattern_parser = Mock()
-        expected_pattern_matcher = Mock()
-        pattern_parser.return_value = iter([expected_pattern_matcher])
-        modifier_parser = Mock()
-        parser = PermissionExpressionParser(pattern_parser, modifier_parser)
-        # When
-        matchers = list(parser("pattern"))
-        # Then
-        pattern_parser.assert_called_once_with("pattern")
-        modifier_parser.assert_not_called()
-        assert matchers == [expected_pattern_matcher]
-
 
 class TestPatternParser:
     def test_call_should_return_regex_pattern_matcher(self):

@@ -5,7 +5,7 @@ import abc
 import re
 from typing import Iterable
 
-from ._auth import PermissionGrant
+from ._auth import PermissionGrant, PermissionGrants
 from ._matcher import RegexMatcher, AnyMatcher, AllMatcher, ModifierMatcherFactory, RequiresMatcher
 
 class PermissionMatcher:
@@ -60,8 +60,7 @@ class PermissionExpressionParser(Parser):
     def __call__(self, expression: str) -> Iterable[PermissionMatcher]:
         pattern, _, modifier = expression.partition(self.MODIFIER_SEPARATOR)
         yield from self._pattern_parser(pattern)
-        if modifier:
-            yield from self._modifier_parser(modifier)
+        yield from self._modifier_parser(modifier)
 
 class PermissionGrantParser:
     """Parse permission grant into a single PermissionMatcher"""
@@ -74,3 +73,13 @@ class PermissionGrantParser:
         if len(matchers) > 1:
             return AllMatcher(matchers)
         return matchers[0]
+
+class PermissionGrantsParser:
+    """Parse multiple permission grants into a single PermissionMatcher"""
+
+    def __init__(self, permission_grant_parser: Parser | None = None):
+        self.permission_grant_parser = permission_grant_parser or PermissionGrantParser()
+
+    def __call__(self, grants: PermissionGrants):
+        matchers = [self.permission_grant_parser(grant) for grant in grants]
+        return AnyMatcher(matchers)
