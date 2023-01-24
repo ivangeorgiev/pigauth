@@ -1,5 +1,5 @@
 Python Authorization Helper's documentation!
-======================================
+=============================================
 
 .. toctree::
    :maxdepth: 2

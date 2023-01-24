@@ -29,11 +29,6 @@ setup(
         'Programming Language :: Python :: 3.9',
     ],
     description="Authorization Helper for Python projects",
-    entry_points={
-        'console_scripts': [
-            'pigauth=pigauth.cli:main',
-        ],
-    },
     install_requires=requirements,
     license="BSD license",
     long_description=readme + '\n\n' + history,
@@ -44,6 +39,10 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/ivangeorgiev/pigauth',
-    version='0.1.0',
+    version='0.2.0',
     zip_safe=False,
+    project_urs={
+        'Documentation': 'https://pigauth.readthedocs.io/',
+        'GitHub': 'https://github.com/ivangeorgiev/pigauth',
+    }
 )
