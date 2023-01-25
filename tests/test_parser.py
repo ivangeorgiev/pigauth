@@ -1,5 +1,5 @@
 from unittest.mock import Mock, call
-from pigauth._parser import PermissionExpressionParser, ModifierParser, PatternParser, PermissionGrantParser
+from pigauth._parser import PermissionExpressionParser, ModifierParser, PatternParser, PermissionGrantParser, PermissionGrantsParser
 from pigauth._matcher import RegexMatcher, AnyMatcher, RequiresMatcher, AllMatcher
 
 class TestExpressionParser:
@@ -38,20 +38,6 @@ class TestExpressionParser:
         pattern_parser.assert_called_once_with("pattern")
         modifier_parser.assert_called_once_with("modifier")
         assert matchers == [expected_pattern_matcher, expected_modifier_matcher]
-
-    def test_call_should_parse_expression_and_yield_only_matchers_when_no_modifier(self):
-        # Given
-        pattern_parser = Mock()
-        expected_pattern_matcher = Mock()
-        pattern_parser.return_value = iter([expected_pattern_matcher])
-        modifier_parser = Mock()
-        parser = PermissionExpressionParser(pattern_parser, modifier_parser)
-        # When
-        matchers = list(parser("pattern"))
-        # Then
-        pattern_parser.assert_called_once_with("pattern")
-        modifier_parser.assert_not_called()
-        assert matchers == [expected_pattern_matcher]
 
 
 class TestPatternParser:
@@ -126,3 +112,17 @@ class TestPermissionGrantParser:
         actual_matcher = grant_parser('kiss.me')
         # Then
         assert actual_matcher is matcher
+
+class TestPermissionGrantsParser:
+    def test_call_should_return_AnyMatcher_with_matcher_for_any_grant(self):
+        # Given
+        permission_grant_parser = Mock()
+        matcher1 = Mock()
+        matcher2 = Mock()
+        permission_grant_parser.side_effect = [matcher1, matcher2]
+        parser = PermissionGrantsParser(permission_grant_parser)
+        # When
+        actual_matcher = parser(['eat.meat', 'eat.fruit'])
+        # Then
+        assert isinstance(actual_matcher, AnyMatcher)
+        actual_matcher.matchers == [matcher1, matcher2]
